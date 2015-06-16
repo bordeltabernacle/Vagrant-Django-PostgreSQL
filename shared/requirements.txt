@@ -1,0 +1,5 @@
+Django==1.8.2
+psycopg2==2.4.5
+virtualenv==13.0.3
+virtualenv-clone==0.2.5
+virtualenvwrapper==4.6.0
