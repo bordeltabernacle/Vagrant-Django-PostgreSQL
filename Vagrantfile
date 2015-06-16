@@ -19,7 +19,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "django" do |django|
         django.vm.hostname = "django"
         django.vm.network "private_network", ip: "10.101.8.101"
-        django.vm.synced_folder "B:\\vagrant\\repeatable-design\\django-LLD-dev-01\\shared", "/home/vagrant/shared"
+        django.vm.synced_folder "B:\\vagrant\\repeatable-design\\django-LLD-dev-02\\shared", "/home/vagrant/shared"
         django.vm.provision :shell, :path => "provision\\djangonode-setup.sh"
     end
 
