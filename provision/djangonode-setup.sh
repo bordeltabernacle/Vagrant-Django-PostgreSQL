@@ -22,6 +22,6 @@ sudo pip install --upgrade pip > /dev/null
 sudo pip install virtualenvwrapper > /dev/null
 sudo apt-get -y install libpq-dev > /dev/null
 # set the location where the virtual environments should live, and the location of the script installed with virtualenvwrapper
-sudo echo -e "\nexport WORKON_HOME=$HOME/.virtualenvs\nsource /usr/local/bin/virtualenvwrapper.sh" >> /home/vagrant/.bashrc
+sudo echo -e "\nexport WORKON_HOME=/home/vagrant/.virtualenvs\nsource /usr/local/bin/virtualenvwrapper.sh" >> /home/vagrant/.bashrc
 # reload startup file
 source /home/vagrant/.bashrc > /dev/null
