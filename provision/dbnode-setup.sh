@@ -33,11 +33,11 @@ PG_DIR="/var/lib/postgresql/$PG_VERSION/main"
 # Edit postgresql.conf to change listen address to '*':
 sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$PG_CONF"
 # Append to pg_hba.conf to add password auth:
-echo "host    all             all             all                     md5" >> "$PG_HBA"
+echo "host     all             all             all                     md5" >> "$PG_HBA"
 # Explicitly set default client_encoding
 echo "client_encoding = utf8" >> "$PG_CONF"
 # Restart so that all new config is loaded:
-service postgresql restart > /dev/null
+sudo service postgresql restart > /dev/null
 
 echo " "
 echo "---{ Create DB user and database..."
