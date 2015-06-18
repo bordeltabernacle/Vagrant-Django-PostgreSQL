@@ -9,3 +9,4 @@ django-secure==1.0.1
 django-waffle==0.10.1
 South==1.0.2
 requests==2.2.1
+selenium==2.46.0
