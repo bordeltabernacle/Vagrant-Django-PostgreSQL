@@ -22,8 +22,8 @@ Vagrant.configure(2) do |config|
         django.vm.network "private_network", ip: "10.101.8.101", :netmask => "255.255.0.0"
         django.vm.network "forwarded_port", guest: 8000, host: 8001
         django.vm.network "forwarded_port", guest: 80, host: 8081
-        django.vm.synced_folder "B:\\vagrant\\repeatable-design\\django-LLD-dev-02\\shared", "/home/vagrant/shared"
-        django.vm.provision :shell, :path => "provision\\djangonode-setup.sh"
+        django.vm.synced_folder "/home/willem/vagrant-machines/django-LLD-dev-02/shared", "/home/vagrant/shared"
+        django.vm.provision :shell, :path => "/home/willem/vagrant-machines/django-LLD-dev-02/provision/djangonode-setup.sh"
     end
 
     config.vm.define "db" do |db|
@@ -32,7 +32,7 @@ Vagrant.configure(2) do |config|
         db.vm.network "forwarded_port", guest: 8000, host: 8002
         db.vm.network "forwarded_port", guest: 80, host: 8082
         db.vm.network "forwarded_port", guest: 5432, host: 15432
-        db.vm.provision :shell, :path => "provision\\dbnode-setup.sh"
+        db.vm.provision :shell, :path => "/home/willem/vagrant-machines/django-LLD-dev-02/provision/dbnode-setup.sh"
     end
 
 end
