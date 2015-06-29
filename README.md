@@ -2,6 +2,8 @@
 
 > A Vagrantfile that brings up 2 VMs, one for Django, the other with a PostgreSQL database.
 
+***Requires Vagrant Host Manager Plugin.  `vagrant plugin install vagrant-hostmanager`***
+
 ## To access Django development server on guest, from Host:
 - run `python manage.py runserver 0.0.0.0:8000` on guest.
 - access on `http://localhost:8001/` on host.
