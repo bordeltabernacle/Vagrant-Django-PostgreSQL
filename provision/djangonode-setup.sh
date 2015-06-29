@@ -1,18 +1,13 @@
 #!/bin/bash
 
 echo " "
-echo "---{ Provisioning virtual machine..."
+echo "---{ Provisioning VM..."
 echo " "
 
 echo " "
 echo "---{ Updating..."
 echo " "
 sudo apt-get -y update > /dev/null
-
-echo " "
-echo "---{ Installing Git..."
-echo " "
-sudo apt-get -y install git > /dev/null
 
 echo " "
 echo "---{ Installing pip & virtualenv..."
@@ -27,3 +22,7 @@ sudo echo "export WORKON_HOME=/home/vagrant/.virtualenvs" >> /home/vagrant/.bash
 sudo echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/vagrant/.bashrc > /dev/null
 # reload startup file
 source /home/vagrant/.bashrc > /dev/null
+
+echo " "
+echo "---{ VM provisioned."
+echo " "

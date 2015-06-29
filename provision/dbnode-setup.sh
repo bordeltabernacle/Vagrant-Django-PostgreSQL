@@ -10,7 +10,7 @@ PHPPG_USER=vagrant
 PHPPG_PASSWD=vagrant
 
 echo " "
-echo "---{ Provisioning virtual machine..."
+echo "---{ Provisioning VM..."
 echo " "
 
 echo " "
@@ -56,8 +56,12 @@ sudo chown vagrant /etc/apache2/sites-available/000-default.conf
 sudo echo -e '\n\n<Directory "/usr/share/phppgadmin">\n\tAuthUserFile /etc/phppgadmin/.htpasswd\n\tAuthName "Restricted Area"\n\tAuthType Basic\n\trequire valid-user\n</Directory>' >> /etc/apache2/sites-available/000-default.conf
 # create phpPgAdmin user information
 echo "$PHPPG_PASSWD" | sudo htpasswd -i -c /etc/phppgadmin/.htpasswd $PHPPG_USER > /dev/null
-# // TODO find where line 60 originated from
+# TODO find where line 60 originated from
 sudo chown vagrant /etc/apache2/apache2.conf
 sudo echo -e "\nInclude /etc/apache2/conf.d/phppgadmin" >> /etc/apache2/apache2.conf
 
 sudo service apache2 restart > /dev/null
+
+echo " "
+echo "---{ VM provisioned."
+echo " "
