@@ -1,6 +1,15 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+vagrant_root = File.dirname(__FILE__)
+django_8000_fp = "8011"
+django_80_fp = "8091"
+db_8000_fp = "8012"
+db_80_fp = "8092"
+db_postgres_fp = "25432"
+django_private_ip = "10.101.9.101"
+db_private_ip = "10.101.9.102"
+
 Vagrant.configure(2) do |config|
 
     config.vm.box = "ubuntu/trusty64"
@@ -8,6 +17,7 @@ Vagrant.configure(2) do |config|
     config.vm.provider "virtualbox" do |vb|
         vb.memory = "1024"
         vb.cpus = "1"
+        vb.gui = false
     end
 
     if Vagrant.has_plugin?("vagrant-hostmanager")
@@ -19,20 +29,20 @@ Vagrant.configure(2) do |config|
 
     config.vm.define "django" do |django|
         django.vm.hostname = "django"
-        django.vm.network "private_network", ip: "10.101.8.101", :netmask => "255.255.0.0"
-        django.vm.network "forwarded_port", guest: 8000, host: 8001
-        django.vm.network "forwarded_port", guest: 80, host: 8081
-        django.vm.synced_folder "/home/willem/vagrant-machines/django-LLD-dev-02/shared", "/home/vagrant/shared"
-        django.vm.provision :shell, :path => "/home/willem/vagrant-machines/django-LLD-dev-02/provision/djangonode-setup.sh"
+        django.vm.network "private_network", ip: django_private_ip, :netmask => "255.255.0.0"
+        django.vm.network "forwarded_port", guest: 8000, host: django_8000_fp
+        django.vm.network "forwarded_port", guest: 80, host: django_80_fp
+        django.vm.synced_folder "#{vagrant_root}/shared", "/home/vagrant/shared"
+        django.vm.provision :shell, :path => "#{vagrant_root}/provision/djangonode-setup.sh"
     end
 
     config.vm.define "db" do |db|
         db.vm.hostname = "db"
-        db.vm.network "private_network", ip: "10.101.8.102", :netmask => "255.255.0.0"
-        db.vm.network "forwarded_port", guest: 8000, host: 8002
-        db.vm.network "forwarded_port", guest: 80, host: 8082
-        db.vm.network "forwarded_port", guest: 5432, host: 15432
-        db.vm.provision :shell, :path => "/home/willem/vagrant-machines/django-LLD-dev-02/provision/dbnode-setup.sh"
+        db.vm.network "private_network", ip: db_private_ip, :netmask => "255.255.0.0"
+        db.vm.network "forwarded_port", guest: 8000, host: db_8000_fp
+        db.vm.network "forwarded_port", guest: 80, host: db_80_fp
+        db.vm.network "forwarded_port", guest: 5432, host: db_postgres_fp
+        db.vm.provision :shell, :path => "#{vagrant_root}/provision/dbnode-setup.sh"
     end
 
 end
