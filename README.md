@@ -6,7 +6,7 @@
 
 ## To access Django development server on guest, from Host:
 - run `python manage.py runserver 0.0.0.0:8000` on guest.
-- access on `http://localhost:8001/` on host.
+- access on `http://localhost:django_8000_fp/` on host, where `django_8000_fp` is the port specified in the Vagrantfile.
 
 ## Database settings:
 - in `settings.py`:
