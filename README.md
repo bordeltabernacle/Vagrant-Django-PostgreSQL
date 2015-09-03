@@ -14,7 +14,7 @@
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'lld_db',
+        'NAME': 'db',
         'USER': 'django',
         'PASSWORD': 'django',
         'HOST': 'db',
@@ -22,3 +22,5 @@ DATABASES = {
     }
 }
 ```
+I've written a blog post that expands on this a bit.
+https://bordeltabernacle.github.io/2015/09/03/notes-on-django-setting-up.html
