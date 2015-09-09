@@ -7,9 +7,9 @@ DBUSER=django
 DBPASSWD=django
 PG_VERSION=9.3
 
-echo "------------------------------------------------------------------------>"
+echo "-------------------------------------------------------------------------"
 echo "--> Provisioning VM"
-echo "--> apt-get Updating"
+echo "--> apt-get updating"
 sudo apt-get -y update > /dev/null
 
 echo "--> Installing PostgreSQL"
@@ -34,6 +34,6 @@ sudo -u postgres psql -c "CREATE USER $DBUSER WITH PASSWORD '$DBPASSWD' CREATEDB
 sudo -u postgres psql -c "CREATE DATABASE $DBNAME ENCODING = 'UTF-8' LC_CTYPE = 'en_US.UTF-8' LC_COLLATE = 'en_US.UTF-8' OWNER $DBUSER TEMPLATE template0" > /dev/null
 
 echo "--> VM provisioned"
-echo "------------------------------------------------------------------------>"
+echo "-------------------------------------------------------------------------"
 echo "--> Go build stuff!"
-echo "------------------------------------------------------------------------>"
+echo "-------------------------------------------------------------------------"

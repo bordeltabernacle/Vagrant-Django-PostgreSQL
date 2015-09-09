@@ -2,13 +2,13 @@
 # vi: set ft=ruby :
 
 vagrant_root = File.dirname(__FILE__)
-django_8000_fp = "8011"
-django_80_fp = "8091"
-db_8000_fp = "8012"
-db_80_fp = "8092"
-db_postgres_fp = "25432"
-django_private_ip = "10.101.9.101"
-db_private_ip = "10.101.9.102"
+django_8000_fp = "8001"
+django_80_fp = "8081"
+db_8000_fp = "8002"
+db_80_fp = "8082"
+db_postgres_fp = "15432"
+django_private_ip = "10.0.0.1"
+db_private_ip = "10.0.0.2"
 
 Vagrant.configure(2) do |config|
 
