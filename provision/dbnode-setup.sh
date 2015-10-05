@@ -8,12 +8,13 @@ DBPASSWD=django
 PG_VERSION=9.3
 
 echo "-------------------------------------------------------------------------"
-echo "--> Provisioning VM"
+echo "--> Provisioning PostgreSQL Virtual Machine"
+echo "-------------------------------------------------------------------------"
 echo "--> apt-get updating"
-sudo apt-get -y update > /dev/null
+sudo apt-get -y update > /dev/null 2>&1
 
 echo "--> Installing PostgreSQL"
-sudo apt-get -y install "postgresql-$PG_VERSION" "postgresql-contrib-$PG_VERSION" > /dev/null
+sudo apt-get -y install "postgresql-$PG_VERSION" "postgresql-contrib-$PG_VERSION" > /dev/null 2>&1
 
 echo "--> Configuring PostgreSQL"
 PG_CONF="/etc/postgresql/$PG_VERSION/main/postgresql.conf"
@@ -26,14 +27,14 @@ echo "host    all             all             all                     md5" >> "$
 # Explicitly set default client_encoding
 echo "client_encoding = utf8" >> "$PG_CONF"
 # Restart so that all new config is loaded:
-sudo service postgresql restart > /dev/null
+sudo service postgresql restart > /dev/null 2>&1
 
 echo "--> Creating database user and database"
-sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$PGPASSWD'" > /dev/null
-sudo -u postgres psql -c "CREATE USER $DBUSER WITH PASSWORD '$DBPASSWD' CREATEDB" > /dev/null
-sudo -u postgres psql -c "CREATE DATABASE $DBNAME ENCODING = 'UTF-8' LC_CTYPE = 'en_US.UTF-8' LC_COLLATE = 'en_US.UTF-8' OWNER $DBUSER TEMPLATE template0" > /dev/null
+sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$PGPASSWD'" > /dev/null 2>&1
+sudo -u postgres psql -c "CREATE USER $DBUSER WITH PASSWORD '$DBPASSWD' CREATEDB" > /dev/null 2>&1
+sudo -u postgres psql -c "CREATE DATABASE $DBNAME ENCODING = 'UTF-8' LC_CTYPE = 'en_US.UTF-8' LC_COLLATE = 'en_US.UTF-8' OWNER $DBUSER TEMPLATE template0" > /dev/null 2>&1
 
-echo "--> VM provisioned"
+echo "--> PostgreSQL Virtual Machine provisioned"
 echo "-------------------------------------------------------------------------"
 echo "--> Go build stuff!"
 echo "-------------------------------------------------------------------------"
